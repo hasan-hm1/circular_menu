@@ -1,7 +1,7 @@
 
 
 
-A simple customizable animated circular menu for Flutter.
+A simple animated circular menu for Flutter, Adjustable radius, colors, alignment, animation curve and animation duration.
 
 [pub package](https://pub.dartlang.org/packages/circular_menu)
 
