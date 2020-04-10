@@ -6,11 +6,15 @@ A simple customizable animated circular menu for Flutter.
 [pub package](https://pub.dartlang.org/packages/circular_menu)
 
 <img src="doc/bottom_center.gif" alt="bottom_center" width="150"/>
-![Example 01](doc/bottom_center.gif =100x) ![Example 02](doc/bottom_left.gif)
-![Example 03](doc/bottom_right.gif) ![Example 04](doc/center.gif)
-![Example 05](doc/center_left.gif) ![Example 06](doc/center_right.gif)
-![Example 07](doc/top_center.gif) ![Example 08](doc/top_left.gif)
-![Example 09](doc/top_right.gif) 
+<img src="doc/bottom_left.gif" alt="bottom_left" width="150"/>
+<img src="doc/bottom_right.gif" alt="bottom_right" width="150"/>
+<img src="doc/center.gif" alt="center" width="150"/>  
+<img src="doc/center_left.gif" alt="center_left" width="150"/>
+<img src="doc/center_right.gif" alt="center_right" width="150"/>  
+<img src="doc/top_center.gif" alt="top_center" width="150"/>
+<img src="doc/top_left.gif" alt="top_left" width="150"/>  
+<img src="doc/top_right.gif" alt="top_right" width="150"/>
+ 
 
 ## Getting Started
 
