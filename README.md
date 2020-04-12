@@ -27,7 +27,7 @@ Add
 to your pubspec.yaml, and run
 
 ```bash
-flutter packages get
+flutter pub get
 ```
 
 in your project's root directory.
