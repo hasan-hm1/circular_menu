@@ -2,14 +2,14 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'menu_item.dart';
+import 'circular_menu_item.dart';
 
 class CircularMenu extends StatefulWidget {
   /// use global key to control animation anywhere in the code
   final GlobalKey<CircularMenuState> key;
 
   /// menu items
-  final List<MenuItem> items;
+  final List<CircularMenuItem> items;
 
   /// menu alignment
   final AlignmentGeometry alignment;
@@ -212,7 +212,7 @@ class CircularMenuState extends State<CircularMenu>
     return Positioned.fill(
       child: Align(
         alignment: widget.alignment,
-        child: MenuItem(
+        child: CircularMenuItem(
           icon: null,
           margin: widget.toggleButtonMargin,
           color: widget.toggleButtonColor ?? Theme.of(context).primaryColor,

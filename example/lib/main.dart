@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
           ),
           toggleButtonColor: Colors.pink,
           items: [
-            MenuItem(
+            CircularMenuItem(
                 icon: Icons.home,
                 color: Colors.green,
                 onTap: () {
@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
                     _colorName = 'Green';
                   });
                 }),
-            MenuItem(
+            CircularMenuItem(
                 icon: Icons.search,
                 color: Colors.blue,
                 onTap: () {
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
                     _colorName = 'Blue';
                   });
                 }),
-            MenuItem(
+            CircularMenuItem(
                 icon: Icons.settings,
                 color: Colors.orange,
                 onTap: () {
@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
                     _colorName = 'Orange';
                   });
                 }),
-            MenuItem(
+            CircularMenuItem(
                 icon: Icons.chat,
                 color: Colors.purple,
                 onTap: () {
@@ -77,7 +77,7 @@ class _MyAppState extends State<MyApp> {
                     _colorName = 'Purple';
                   });
                 }),
-            MenuItem(
+            CircularMenuItem(
                 icon: Icons.notifications,
                 color: Colors.brown,
                 onTap: () {
