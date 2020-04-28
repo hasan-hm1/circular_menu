@@ -18,7 +18,7 @@ class CircularMenu extends StatefulWidget {
   final double radius;
 
   /// widget holds actual page content
-  final Widget backgoundWidget;
+  final Widget backgroundWidget;
 
   /// animation duration
   final Duration animationDuration;
@@ -52,7 +52,7 @@ class CircularMenu extends StatefulWidget {
     @required this.items,
     this.alignment = Alignment.bottomCenter,
     this.radius = 100,
-    this.backgoundWidget,
+    this.backgroundWidget,
     this.animationDuration = const Duration(milliseconds: 500),
     this.curve = Curves.bounceOut,
     this.reverseCurve = Curves.fastOutSlowIn,
@@ -242,7 +242,7 @@ class CircularMenuState extends State<CircularMenu>
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        widget.backgoundWidget ?? Container(),
+        widget.backgroundWidget ?? Container(),
         Stack(
           children: <Widget>[
             ..._buildMenuItems(),

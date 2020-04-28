@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: CircularMenu(
           alignment: Alignment.bottomCenter,
-          backgoundWidget: Center(
+          backgroundWidget: Center(
             child: RichText(
               text: TextSpan(
                 style: TextStyle(color: Colors.black, fontSize: 28),

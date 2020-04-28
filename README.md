@@ -73,7 +73,7 @@ There are additional optional parameters to initialize the menu with.
       // menu radius
       radius: 100,
       // widget in the background holds actual page content
-      backgoundWidget: MyCustomWidget(),
+      backgroundWidget: MyCustomWidget(),
       // global key to control the animation anywhere in the code.
       key: // GlobalKey<CircularMenuState>(),
       // animation duration
@@ -159,7 +159,7 @@ control animation anywhere in your code using a key:
         alignment: Alignment.bottomCenter,
         startingAngleInRadian: 1.25 * pi,
         endingAngleInRadian: 1.75 * pi,
-        backgoundWidget: Center(
+        backgroundWidget: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
