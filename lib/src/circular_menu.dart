@@ -2,14 +2,14 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'menu_item.dart';
+import 'circular_menu_item.dart';
 
 class CircularMenu extends StatefulWidget {
   /// use global key to control animation anywhere in the code
   final GlobalKey<CircularMenuState> key;
 
   /// menu items
-  final List<MenuItem> items;
+  final List<CircularMenuItem> items;
 
   /// menu alignment
   final AlignmentGeometry alignment;
@@ -18,7 +18,7 @@ class CircularMenu extends StatefulWidget {
   final double radius;
 
   /// widget holds actual page content
-  final Widget backgoundWidget;
+  final Widget backgroundWidget;
 
   /// animation duration
   final Duration animationDuration;
@@ -52,7 +52,7 @@ class CircularMenu extends StatefulWidget {
     @required this.items,
     this.alignment = Alignment.bottomCenter,
     this.radius = 100,
-    this.backgoundWidget,
+    this.backgroundWidget,
     this.animationDuration = const Duration(milliseconds: 500),
     this.curve = Curves.bounceOut,
     this.reverseCurve = Curves.fastOutSlowIn,
@@ -212,7 +212,7 @@ class CircularMenuState extends State<CircularMenu>
     return Positioned.fill(
       child: Align(
         alignment: widget.alignment,
-        child: MenuItem(
+        child: CircularMenuItem(
           icon: null,
           margin: widget.toggleButtonMargin,
           color: widget.toggleButtonColor ?? Theme.of(context).primaryColor,
@@ -242,7 +242,7 @@ class CircularMenuState extends State<CircularMenu>
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        widget.backgoundWidget ?? Container(),
+        widget.backgroundWidget ?? Container(),
         Stack(
           children: <Widget>[
             ..._buildMenuItems(),

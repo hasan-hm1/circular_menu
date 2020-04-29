@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MenuItem extends StatelessWidget {
+class CircularMenuItem extends StatelessWidget {
   /// if icon and animatedIcon are passed, icon will be ignored
   final IconData icon;
   final Color color;
@@ -17,7 +17,7 @@ class MenuItem extends StatelessWidget {
   /// creates a menu item .
   /// [onTap] must not be null.
   /// [padding] , [margin] and [elevation] must be equal or greater than zero.
-  MenuItem({
+  CircularMenuItem({
     @required this.onTap,
     this.icon,
     this.color,

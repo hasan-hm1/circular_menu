@@ -1,0 +1,14 @@
+name: circular_menu_example
+version: 0.1.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  circular_menu:
+    path: ../
+
+# The following section is specific to Flutter.
+flutter:
+  uses-material-design: true
