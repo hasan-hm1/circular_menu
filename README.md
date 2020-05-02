@@ -5,7 +5,7 @@ A simple animated circular menu for Flutter, Adjustable radius, colors, alignmen
 
 [pub package](https://pub.dartlang.org/packages/circular_menu)
 
-<img src="doc/bottom_center.gif" alt="bottom_center" width="150"/> <img src="doc/bottom_left.gif" alt="bottom_left" width="150"/> <img src="doc/bottom_right.gif" alt="bottom_right" width="150"/> <img src="doc/center.gif" alt="center" width="150"/> <img src="doc/center_left.gif" alt="center_left" width="150"/> <img src="doc/center_right.gif" alt="center_right" width="150"/>  <img src="doc/top_center.gif" alt="top_center" width="150"/> <img src="doc/top_left.gif" alt="top_left" width="150"/> <img src="doc/top_right.gif" alt="top_right" width="150"/>
+<img src="doc/bottom_center.gif" alt="bottom_center" width="150"/> <img src="doc/bottom_left.gif" alt="bottom_left" width="150"/> <img src="doc/bottom_right.gif" alt="bottom_right" width="150"/> <img src="doc/center.gif" alt="center" width="150"/> <img src="doc/center_left.gif" alt="center_left" width="150"/> <img src="doc/center_right.gif" alt="center_right" width="150"/>  <img src="doc/top_center.gif" alt="top_center" width="150"/> <img src="doc/top_left.gif" alt="top_left" width="150"/> <img src="doc/top_right.gif" alt="top_right" width="150"/>  <img src="doc/multi_circular_menu.gif" alt="multi_circular_menu" width="150"/>
  
 
 ## Getting Started
@@ -226,7 +226,73 @@ control animation anywhere in your code using a key:
 
 ```
  
+use MultiCircularMenu to show more than one menu in the same widget :
 
+```dart
 
+MultiCircularMenu(
+          backgroundWidget: Center(
+            child: Text(
+              "Flutter Circular Menu",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+          ),
+          menus: [
+            CircularMenu(
+                toggleButtonColor: Colors.pink,
+                alignment: Alignment.bottomLeft,
+                items: [
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.search,
+                    color: Colors.blue,
+                  ),
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.home,
+                    color: Colors.grey,
+                  ),
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.settings,
+                    color: Colors.green,
+                  ),
+                ]),
+            CircularMenu(
+                toggleButtonColor: Colors.deepPurpleAccent,
+                alignment: Alignment.bottomRight,
+                items: [
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.save,
+                    color: Colors.teal,
+                  ),
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.filter,
+                    color: Colors.amber,
+                  ),
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.star_border,
+                    color: Colors.lightGreen,
+                  ),
+                ]),
+          ])
 
-
+```
