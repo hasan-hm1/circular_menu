@@ -9,3 +9,6 @@
 
 ## [0.1.1]
 - added MultiCircularMenu widget, 2.05.2020.
+
+## [0.1.2]
+- remove CircularMenuItem default padding, 21.05.2020.
