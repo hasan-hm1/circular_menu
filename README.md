@@ -1,15 +1,12 @@
 
 
 
-A simple customizable animated circular menu for Flutter.
+A simple animated circular menu for Flutter, Adjustable radius, colors, alignment, animation curve and animation duration.
 
 [pub package](https://pub.dartlang.org/packages/circular_menu)
 
-![Example 01](doc/bottom_center.gif) ![Example 02](doc/bottom_left.gif)
-![Example 03](doc/bottom_right.gif) ![Example 04](doc/center.gif)
-![Example 05](doc/center_left.gif) ![Example 06](doc/center_right.gif)
-![Example 07](doc/top_center.gif) ![Example 08](doc/top_left.gif)
-![Example 09](doc/top_right.gif) 
+<img src="https://raw.githubusercontent.com/hasan-hm1/circular_menu/master/doc/bottom_center.gif" alt="bottom_center" width="150"/> <img src="https://raw.githubusercontent.com/hasan-hm1/circular_menu/master/doc/bottom_left.gif" alt="bottom_left" width="150"/> <img src="https://raw.githubusercontent.com/hasan-hm1/circular_menu/master/doc/bottom_right.gif" alt="bottom_right" width="150"/> <img src="https://raw.githubusercontent.com/hasan-hm1/circular_menu/master/doc/center.gif" alt="center" width="150"/> <img src="https://raw.githubusercontent.com/hasan-hm1/circular_menu/master/doc/center_left.gif" alt="center_left" width="150"/>
+<img src="https://raw.githubusercontent.com/hasan-hm1/circular_menu/master/doc/center_right.gif" alt="center_right" width="150"/> <img src="https://raw.githubusercontent.com/hasan-hm1/circular_menu/master/doc/top_center.gif" alt="top_center" width="150"/> <img src="https://raw.githubusercontent.com/hasan-hm1/circular_menu/master/doc/top_left.gif" alt="top_left" width="150"/> <img src="https://raw.githubusercontent.com/hasan-hm1/circular_menu/master/doc/top_right.gif" alt="top_right" width="150"/> <img src="https://raw.githubusercontent.com/hasan-hm1/circular_menu/master/doc/multi_circular_menu.gif" alt="bottom_center" width="150"/>
 
 ## Getting Started
 
@@ -30,7 +27,7 @@ Add
 to your pubspec.yaml, and run
 
 ```bash
-flutter packages get
+flutter pub get
 ```
 
 in your project's root directory.
@@ -42,6 +39,7 @@ Import it to your project file
 
 ```dart
 import 'package:circular_menu/circular_menu.dart';
+
 ```
 
 And add it in its most basic form like it:
@@ -95,7 +93,12 @@ There are additional optional parameters to initialize the menu with.
       },
       // toggle button appearance properties
       toggleButtonColor: Colors.pink,
-      toggleButtonElevation: 4.0,
+      toggleButtonBoxShadow: [
+              BoxShadow(
+                color: Colors.blue,
+                blurRadius: 10,
+              ),
+            ], 
       toggleButtonIconColor: Colors.white,
       toggleButtonMargin: 10.0,
       toggleButtonPadding: 10.0,
@@ -229,6 +232,78 @@ control animation anywhere in your code using a key:
 
 ```
  
+use MultiCircularMenu to show more than one menu in the same widget :
+
+
+```dart
+ 
+MultiCircularMenu(
+          backgroundWidget: Center(
+            child: Text(
+              "Flutter Circular Menu",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+          ),
+          menus: [
+            CircularMenu(
+                toggleButtonColor: Colors.pink,
+                alignment: Alignment.bottomLeft,
+                items: [
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.search,
+                    color: Colors.blue,
+                  ),
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.home,
+                    color: Colors.grey,
+                  ),
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.settings,
+                    color: Colors.green,
+                  ),
+                ]),
+            CircularMenu(
+                toggleButtonColor: Colors.deepPurpleAccent,
+                alignment: Alignment.bottomRight,
+                items: [
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.save,
+                    color: Colors.teal,
+                  ),
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.filter,
+                    color: Colors.amber,
+                  ),
+                  CircularMenuItem(
+                    onTap: () {
+                      print('tapped');
+                    },
+                    icon: Icons.star_border,
+                    color: Colors.lightGreen,
+                  ),
+                ]),
+          ])
+
+
+```
 
 
 

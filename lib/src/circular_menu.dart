@@ -2,14 +2,14 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'menu_item.dart';
+import 'circular_menu_item.dart';
 
 class CircularMenu extends StatefulWidget {
   /// use global key to control animation anywhere in the code
   final GlobalKey<CircularMenuState> key;
 
-  /// menu items
-  final List<MenuItem> items;
+  /// list of CircularMenuItem contains at least two items.
+  final List<CircularMenuItem> items;
 
   /// menu alignment
   final AlignmentGeometry alignment;
@@ -18,7 +18,7 @@ class CircularMenu extends StatefulWidget {
   final double radius;
 
   /// widget holds actual page content
-  final Widget backgoundWidget;
+  final Widget backgroundWidget;
 
   /// animation duration
   final Duration animationDuration;
@@ -33,7 +33,7 @@ class CircularMenu extends StatefulWidget {
   final VoidCallback toggleButtonOnPressed;
   final Color toggleButtonColor;
   final double toggleButtonSize;
-  final double toggleButtonElevation;
+  final List<BoxShadow> toggleButtonBoxShadow ;
   final double toggleButtonPadding;
   final double toggleButtonMargin;
   final Color toggleButtonIconColor;
@@ -44,21 +44,21 @@ class CircularMenu extends StatefulWidget {
   /// ending angle in clockwise radian
   final double endingAngleInRadian;
 
-/// creates a circular menu with specific [radius] and [alignment] .
-/// [toggleButtonElevation] ,[toggleButtonPadding] and [toggleButtonMargin] must be 
-/// equal or greater than zero.
-/// [items] must not be null and it must contains two elements at least.
+  /// creates a circular menu with specific [radius] and [alignment] .
+  /// [toggleButtonElevation] ,[toggleButtonPadding] and [toggleButtonMargin] must be
+  /// equal or greater than zero.
+  /// [items] must not be null and it must contains two elements at least.
   CircularMenu({
     @required this.items,
     this.alignment = Alignment.bottomCenter,
     this.radius = 100,
-    this.backgoundWidget,
+    this.backgroundWidget,
     this.animationDuration = const Duration(milliseconds: 500),
     this.curve = Curves.bounceOut,
     this.reverseCurve = Curves.fastOutSlowIn,
     this.toggleButtonOnPressed,
     this.toggleButtonColor,
-    this.toggleButtonElevation = 4,
+    this.toggleButtonBoxShadow ,
     this.toggleButtonMargin = 10,
     this.toggleButtonPadding = 10,
     this.toggleButtonSize = 40,
@@ -66,8 +66,8 @@ class CircularMenu extends StatefulWidget {
     this.key,
     this.startingAngleInRadian,
     this.endingAngleInRadian,
-  })  : assert(items != null),
-        assert(items.length > 1),
+  })  : assert(items != null, 'items can not be empty list'),
+        assert(items.length > 1, 'if you have one item no need to use a Menu'),
         super(key: key);
 
   @override
@@ -159,7 +159,8 @@ class CircularMenuState extends State<CircularMenu>
           _completeAngle = 0.5 * math.pi;
           _initialAngle = 0.5 * math.pi;
           break;
-          default: throw 'startingAngleInRadian and endingAngleInRadian can not be null' ;
+        default:
+          throw 'startingAngleInRadian and endingAngleInRadian can not be null';
       }
     }
 
@@ -212,11 +213,11 @@ class CircularMenuState extends State<CircularMenu>
     return Positioned.fill(
       child: Align(
         alignment: widget.alignment,
-        child: MenuItem(
+        child: CircularMenuItem(
           icon: null,
           margin: widget.toggleButtonMargin,
           color: widget.toggleButtonColor ?? Theme.of(context).primaryColor,
-          elevation: widget.toggleButtonElevation,
+         
           padding: (-_animation.value * widget.toggleButtonPadding * 0.5) +
               widget.toggleButtonPadding,
           onTap: () {
@@ -227,6 +228,7 @@ class CircularMenuState extends State<CircularMenu>
               widget.toggleButtonOnPressed();
             }
           },
+          boxShadow: widget.toggleButtonBoxShadow,
           animatedIcon: AnimatedIcon(
             icon: AnimatedIcons.menu_close,
             size: widget.toggleButtonSize,
@@ -242,13 +244,9 @@ class CircularMenuState extends State<CircularMenu>
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        widget.backgoundWidget ?? Container(),
-        Stack(
-          children: <Widget>[
-            ..._buildMenuItems(),
-            _buildMenuButton(context),
-          ],
-        )
+        widget.backgroundWidget ?? Container(),
+        ..._buildMenuItems(),
+        _buildMenuButton(context),
       ],
     );
   }
