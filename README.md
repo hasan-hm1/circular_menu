@@ -92,7 +92,12 @@ There are additional optional parameters to initialize the menu with.
       },
       // toggle button appearance properties
       toggleButtonColor: Colors.pink,
-      toggleButtonElevation: 4.0,
+      toggleButtonBoxShadow: [
+              BoxShadow(
+                color: Colors.blue,
+                blurRadius: 10,
+              ),
+            ], 
       toggleButtonIconColor: Colors.white,
       toggleButtonMargin: 10.0,
       toggleButtonPadding: 10.0,
