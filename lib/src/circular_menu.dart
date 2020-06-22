@@ -33,10 +33,11 @@ class CircularMenu extends StatefulWidget {
   final VoidCallback toggleButtonOnPressed;
   final Color toggleButtonColor;
   final double toggleButtonSize;
-  final List<BoxShadow> toggleButtonBoxShadow ;
+  final List<BoxShadow> toggleButtonBoxShadow;
   final double toggleButtonPadding;
   final double toggleButtonMargin;
   final Color toggleButtonIconColor;
+  final AnimatedIconData toggleButtonAnimatedIconData;
 
   /// staring angle in clockwise radian
   final double startingAngleInRadian;
@@ -58,11 +59,12 @@ class CircularMenu extends StatefulWidget {
     this.reverseCurve = Curves.fastOutSlowIn,
     this.toggleButtonOnPressed,
     this.toggleButtonColor,
-    this.toggleButtonBoxShadow ,
+    this.toggleButtonBoxShadow,
     this.toggleButtonMargin = 10,
     this.toggleButtonPadding = 10,
     this.toggleButtonSize = 40,
     this.toggleButtonIconColor,
+    this.toggleButtonAnimatedIconData = AnimatedIcons.menu_close,
     this.key,
     this.startingAngleInRadian,
     this.endingAngleInRadian,
@@ -217,7 +219,6 @@ class CircularMenuState extends State<CircularMenu>
           icon: null,
           margin: widget.toggleButtonMargin,
           color: widget.toggleButtonColor ?? Theme.of(context).primaryColor,
-         
           padding: (-_animation.value * widget.toggleButtonPadding * 0.5) +
               widget.toggleButtonPadding,
           onTap: () {
@@ -230,7 +231,8 @@ class CircularMenuState extends State<CircularMenu>
           },
           boxShadow: widget.toggleButtonBoxShadow,
           animatedIcon: AnimatedIcon(
-            icon: AnimatedIcons.menu_close,
+            icon:
+                widget.toggleButtonAnimatedIconData, //AnimatedIcons.menu_close,
             size: widget.toggleButtonSize,
             color: widget.toggleButtonIconColor ?? Colors.white,
             progress: _animation,
