@@ -20,7 +20,7 @@ Add
 
 ```bash
 
- circular_menu : ^lastest_version
+ circular_menu : ^latest_version
 
 ```
 
@@ -39,33 +39,32 @@ Import it to your project file
 
 ```dart
 import 'package:circular_menu/circular_menu.dart';
-
 ```
 
-And add it in its most basic form like it:
+And add it in it's most basic form :
 
 ```dart
 final circularMenu = CircularMenu(items: [
-    MenuItem(icon: Icons.home, onTap: () {
+    CircularMenuItem(icon: Icons.home, onTap: () {
       // callback
     }),
-    MenuItem(icon: Icons.search, onTap: () {
+    CircularMenuItem(icon: Icons.search, onTap: () {
       //callback
     }),
-    MenuItem(icon: Icons.settings, onTap: () {
+    CircularMenuItem(icon: Icons.settings, onTap: () {
       //callback
     }),
-    MenuItem(icon: Icons.star, onTap: () {
+    CircularMenuItem(icon: Icons.star, onTap: () {
       //callback
     }),
-    MenuItem(icon: Icons.pages, onTap: () {
+    CircularMenuItem(icon: Icons.pages, onTap: () {
       //callback
     }),
   ]);
 
 ```
 
-There are additional optional parameters to initialize the menu with.
+There are additional optional parameters to initialize the menu with:
 
 ```dart
   final circularMenu = CircularMenu(
@@ -74,7 +73,7 @@ There are additional optional parameters to initialize the menu with.
       // menu radius
       radius: 100,
       // widget in the background holds actual page content
-      backgoundWidget: MyCustomWidget(),
+      backgroundWidget: MyCustomWidget(),
       // global key to control the animation anywhere in the code.
       key: // GlobalKey<CircularMenuState>(),
       // animation duration
@@ -104,7 +103,7 @@ There are additional optional parameters to initialize the menu with.
       toggleButtonPadding: 10.0,
       toggleButtonSize: 40.0,
       items: [
-        MenuItem(
+        CircularMenuItem(
           // menu item callback
           onTap: () {
             // callback
@@ -120,22 +119,22 @@ There are additional optional parameters to initialize the menu with.
           // when 'animatedIcon' is passed,above 'icon' will be ignored
            animatedIcon:// AnimatedIcon(),
         ),
-        MenuItem(
+        CircularMenuItem(
             icon: Icons.search,
             onTap: () {
               //callback
             }),
-        MenuItem(
+        CircularMenuItem(
             icon: Icons.settings,
             onTap: () {
               //callback
             }),
-        MenuItem(
+        CircularMenuItem(
             icon: Icons.star,
             onTap: () {
               //callback
             }),
-        MenuItem(
+        CircularMenuItem(
             icon: Icons.pages,
             onTap: () {
               //callback
@@ -165,7 +164,7 @@ control animation anywhere in your code using a key:
         alignment: Alignment.bottomCenter,
         startingAngleInRadian: 1.25 * pi,
         endingAngleInRadian: 1.75 * pi,
-        backgoundWidget: Center(
+        backgroundWidget: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -206,19 +205,19 @@ control animation anywhere in your code using a key:
         ),
         key: key,
         items: [
-          MenuItem(
+          CircularMenuItem(
             icon: Icons.home,
             onTap: () {},
             color: Colors.green,
             iconColor: Colors.white,
           ),
-          MenuItem(
+          CircularMenuItem(
             icon: Icons.search,
             onTap: () {},
             color: Colors.orange,
             iconColor: Colors.white,
           ),
-          MenuItem(
+          CircularMenuItem(
             icon: Icons.settings,
             onTap: () {},
             color: Colors.deepPurple,
@@ -234,9 +233,8 @@ control animation anywhere in your code using a key:
  
 use MultiCircularMenu to show more than one menu in the same widget :
 
-
 ```dart
- 
+
 MultiCircularMenu(
           backgroundWidget: Center(
             child: Text(
@@ -302,9 +300,4 @@ MultiCircularMenu(
                 ]),
           ])
 
-
 ```
-
-
-
-

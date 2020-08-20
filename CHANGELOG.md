@@ -12,3 +12,6 @@
 
 ## [0.1.2]
 - remove CircularMenuItem default padding, 21.05.2020.
+
+## [0.1.3]
+- update README.md , 23.05.2020.
