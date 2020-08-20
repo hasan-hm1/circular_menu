@@ -82,9 +82,9 @@ There are additional optional parameters to initialize the menu with:
       curve: Curves.bounceOut,
       // animation curve in reverse
       reverseCurve: Curves.fastOutSlowIn,
-	// first item angle
+	    // first item angle
       startingAngleInRadian : 0 ,
-	// last item angle
+    	// last item angle
       endingAngleInRadian : pi,
       // toggle button callback
       toggleButtonOnPressed: () {
@@ -300,4 +300,6 @@ MultiCircularMenu(
                 ]),
           ])
 
+
 ```
+

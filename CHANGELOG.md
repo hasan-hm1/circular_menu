@@ -15,3 +15,9 @@
 
 ## [0.1.3]
 - update README.md , 23.05.2020.
+
+## [1.0.0]
+- customizable toggle button animated icon, 20.8.2020.
+
+## [1.1.0]
+- update README.md, 20.8.2020.

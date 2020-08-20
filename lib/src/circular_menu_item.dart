@@ -39,7 +39,7 @@ class CircularMenuItem extends StatelessWidget {
         boxShadow: boxShadow ??
             [
               BoxShadow(
-                color: color,
+                color: color ?? Theme.of(context).primaryColor,
                 blurRadius: 10,
               ),
             ],
