@@ -98,7 +98,24 @@ class CircularMenuState extends State<CircularMenu>
 
   @override
   void initState() {
+    _configure();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: widget.animationDuration,
+    )..addListener(() {
+        setState(() {});
+      });
+    _animation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+          parent: _animationController,
+          curve: widget.curve,
+          reverseCurve: widget.reverseCurve),
+    );
+    _itemsCount = widget.items.length;
     super.initState();
+  }
+
+  void _configure() {
     if (widget.startingAngleInRadian != null ||
         widget.endingAngleInRadian != null) {
       if (widget.startingAngleInRadian == null) {
@@ -165,20 +182,12 @@ class CircularMenuState extends State<CircularMenu>
           throw 'startingAngleInRadian and endingAngleInRadian can not be null';
       }
     }
+  }
 
-    _animationController = AnimationController(
-      vsync: this,
-      duration: widget.animationDuration,
-    )..addListener(() {
-        setState(() {});
-      });
-    _animation = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-          parent: _animationController,
-          curve: widget.curve,
-          reverseCurve: widget.reverseCurve),
-    );
-    _itemsCount = widget.items.length;
+  @override
+  void didUpdateWidget(oldWidget) {
+    _configure();
+    super.didUpdateWidget(oldWidget);
   }
 
   List<Widget> _buildMenuItems() {

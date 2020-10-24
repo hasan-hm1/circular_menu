@@ -5,7 +5,7 @@ author: Hasan Mohammed <hasanmohammed.hm1@gmail.com>
 homepage: https://github.com/hasan-hm1/circular_menu
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
 
 dependencies:
   flutter:
