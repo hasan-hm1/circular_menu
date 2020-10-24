@@ -21,3 +21,6 @@
 
 ## [1.1.0]
 - update README.md, 20.8.2020.
+
+## [1.1.1]
+- fix Circular Menu does not reflect on hot reload, 24.10.2020.
