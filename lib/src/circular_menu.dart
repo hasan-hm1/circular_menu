@@ -77,11 +77,23 @@ class CircularMenu extends StatefulWidget {
 
 class CircularMenuState extends State<CircularMenu>
     with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
+  late AnimationController _animationController = AnimationController(
+    vsync: this,
+    duration: widget.animationDuration,
+  )..addListener(() {
+      setState(() {});
+    });
+
+  late Animation<double> _animation = Tween(begin: 0.0, end: 1.0).animate(
+    CurvedAnimation(
+        parent: _animationController,
+        curve: widget.curve,
+        reverseCurve: widget.reverseCurve),
+  );
+
   late double _completeAngle;
   late double _initialAngle;
-  late int _itemsCount;
-  late Animation<double> _animation;
+  late int _itemsCount = widget.items.length;
 
   /// forward animation
   void forwardAnimation() {
@@ -96,19 +108,6 @@ class CircularMenuState extends State<CircularMenu>
   @override
   void initState() {
     _configure();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: widget.animationDuration,
-    )..addListener(() {
-        setState(() {});
-      });
-    _animation = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-          parent: _animationController,
-          curve: widget.curve,
-          reverseCurve: widget.reverseCurve),
-    );
-    _itemsCount = widget.items.length;
     super.initState();
   }
 
