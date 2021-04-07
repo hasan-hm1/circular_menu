@@ -6,7 +6,7 @@ import 'circular_menu_item.dart';
 
 class CircularMenu extends StatefulWidget {
   /// use global key to control animation anywhere in the code
-  final GlobalKey<CircularMenuState> key;
+  final GlobalKey<CircularMenuState>? key;
 
   /// list of CircularMenuItem contains at least two items.
   final List<CircularMenuItem> items;
@@ -18,7 +18,7 @@ class CircularMenu extends StatefulWidget {
   final double radius;
 
   /// widget holds actual page content
-  final Widget backgroundWidget;
+  final Widget? backgroundWidget;
 
   /// animation duration
   final Duration animationDuration;
@@ -30,27 +30,30 @@ class CircularMenu extends StatefulWidget {
   final Curve reverseCurve;
 
   /// callback
-  final VoidCallback toggleButtonOnPressed;
-  final Color toggleButtonColor;
+  final VoidCallback? toggleButtonOnPressed;
+  final Color? toggleButtonColor;
   final double toggleButtonSize;
-  final List<BoxShadow> toggleButtonBoxShadow;
+  final List<BoxShadow>? toggleButtonBoxShadow;
   final double toggleButtonPadding;
   final double toggleButtonMargin;
-  final Color toggleButtonIconColor;
+  final Color? toggleButtonIconColor;
   final AnimatedIconData toggleButtonAnimatedIconData;
 
+  ///optional widget to replace animated toggle button
+  final Widget? toggleButtonCustomWidget;
+
   /// staring angle in clockwise radian
-  final double startingAngleInRadian;
+  final double? startingAngleInRadian;
 
   /// ending angle in clockwise radian
-  final double endingAngleInRadian;
+  final double? endingAngleInRadian;
 
   /// creates a circular menu with specific [radius] and [alignment] .
   /// [toggleButtonElevation] ,[toggleButtonPadding] and [toggleButtonMargin] must be
   /// equal or greater than zero.
   /// [items] must not be null and it must contains two elements at least.
   CircularMenu({
-    @required this.items,
+    required this.items,
     this.alignment = Alignment.bottomCenter,
     this.radius = 100,
     this.backgroundWidget,
@@ -65,11 +68,11 @@ class CircularMenu extends StatefulWidget {
     this.toggleButtonSize = 40,
     this.toggleButtonIconColor,
     this.toggleButtonAnimatedIconData = AnimatedIcons.menu_close,
+    this.toggleButtonCustomWidget,
     this.key,
     this.startingAngleInRadian,
     this.endingAngleInRadian,
-  })  : assert(items != null, 'items can not be empty list'),
-        assert(items.length > 1, 'if you have one item no need to use a Menu'),
+  })  : assert(items.length > 1, 'if you have one item no need to use a Menu'),
         super(key: key);
 
   @override
@@ -78,13 +81,23 @@ class CircularMenu extends StatefulWidget {
 
 class CircularMenuState extends State<CircularMenu>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  double _completeAngle;
-  double _initialAngle;
-  double _endAngle;
-  double _startAngle;
-  int _itemsCount;
-  Animation<double> _animation;
+  late AnimationController _animationController = AnimationController(
+    vsync: this,
+    duration: widget.animationDuration,
+  )..addListener(() {
+      setState(() {});
+    });
+
+  late Animation<double> _animation = Tween(begin: 0.0, end: 1.0).animate(
+    CurvedAnimation(
+        parent: _animationController,
+        curve: widget.curve,
+        reverseCurve: widget.reverseCurve),
+  );
+
+  late double _completeAngle;
+  late double _initialAngle;
+  late int _itemsCount = widget.items.length;
 
   /// forward animation
   void forwardAnimation() {
@@ -99,19 +112,6 @@ class CircularMenuState extends State<CircularMenu>
   @override
   void initState() {
     _configure();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: widget.animationDuration,
-    )..addListener(() {
-        setState(() {});
-      });
-    _animation = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-          parent: _animationController,
-          curve: widget.curve,
-          reverseCurve: widget.reverseCurve),
-    );
-    _itemsCount = widget.items.length;
     super.initState();
   }
 
@@ -125,14 +125,14 @@ class CircularMenuState extends State<CircularMenu>
         throw ('endingAngleInRadian can not be null');
       }
 
-      if (widget.startingAngleInRadian < 0) {
+      if (widget.startingAngleInRadian! < 0) {
         throw 'startingAngleInRadian has to be in clockwise radian';
       }
-      if (widget.endingAngleInRadian < 0) {
+      if (widget.endingAngleInRadian! < 0) {
         throw 'endingAngleInRadian has to be in clockwise radian';
       }
-      _startAngle = (widget.startingAngleInRadian / math.pi) % 2;
-      _endAngle = (widget.endingAngleInRadian / math.pi) % 2;
+      double _startAngle = (widget.startingAngleInRadian! / math.pi) % 2;
+      double _endAngle = (widget.endingAngleInRadian! / math.pi) % 2;
       if (_endAngle < _startAngle) {
         throw 'startingAngleInRadian can not be greater than endingAngleInRadian';
       }
@@ -142,39 +142,39 @@ class CircularMenuState extends State<CircularMenu>
       _initialAngle = _startAngle * math.pi;
     } else {
       switch (widget.alignment.toString()) {
-        case 'bottomCenter':
+        case 'Alignment.bottomCenter':
           _completeAngle = 1 * math.pi;
           _initialAngle = 1 * math.pi;
           break;
-        case 'topCenter':
+        case 'Alignment.topCenter':
           _completeAngle = 1 * math.pi;
           _initialAngle = 0 * math.pi;
           break;
-        case 'centerLeft':
+        case 'Alignment.centerLeft':
           _completeAngle = 1 * math.pi;
           _initialAngle = 1.5 * math.pi;
           break;
-        case 'centerRight':
+        case 'Alignment.centerRight':
           _completeAngle = 1 * math.pi;
           _initialAngle = 0.5 * math.pi;
           break;
-        case 'center':
+        case 'Alignment.center':
           _completeAngle = 2 * math.pi;
           _initialAngle = 0 * math.pi;
           break;
-        case 'bottomRight':
+        case 'Alignment.bottomRight':
           _completeAngle = 0.5 * math.pi;
           _initialAngle = 1 * math.pi;
           break;
-        case 'bottomLeft':
+        case 'Alignment.bottomLeft':
           _completeAngle = 0.5 * math.pi;
           _initialAngle = 1.5 * math.pi;
           break;
-        case 'topLeft':
+        case 'Alignment.topLeft':
           _completeAngle = 0.5 * math.pi;
           _initialAngle = 0 * math.pi;
           break;
-        case 'topRight':
+        case 'Alignment.topRight':
           _completeAngle = 0.5 * math.pi;
           _initialAngle = 0.5 * math.pi;
           break;
@@ -225,7 +225,6 @@ class CircularMenuState extends State<CircularMenu>
       child: Align(
         alignment: widget.alignment,
         child: CircularMenuItem(
-          icon: null,
           margin: widget.toggleButtonMargin,
           color: widget.toggleButtonColor ?? Theme.of(context).primaryColor,
           padding: (-_animation.value * widget.toggleButtonPadding * 0.5) +
@@ -235,17 +234,19 @@ class CircularMenuState extends State<CircularMenu>
                 ? (_animationController).forward()
                 : (_animationController).reverse();
             if (widget.toggleButtonOnPressed != null) {
-              widget.toggleButtonOnPressed();
+              widget.toggleButtonOnPressed!();
             }
           },
           boxShadow: widget.toggleButtonBoxShadow,
-          animatedIcon: AnimatedIcon(
-            icon:
-                widget.toggleButtonAnimatedIconData, //AnimatedIcons.menu_close,
-            size: widget.toggleButtonSize,
-            color: widget.toggleButtonIconColor ?? Colors.white,
-            progress: _animation,
-          ),
+          item: widget.toggleButtonCustomWidget != null
+              ? widget.toggleButtonCustomWidget
+              : AnimatedIcon(
+                  icon: widget
+                      .toggleButtonAnimatedIconData, //AnimatedIcons.menu_close,
+                  size: widget.toggleButtonSize,
+                  color: widget.toggleButtonIconColor ?? Colors.white,
+                  progress: _animation,
+                ),
         ),
       ),
     );
