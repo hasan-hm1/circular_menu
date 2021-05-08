@@ -64,7 +64,7 @@ final circularMenu = CircularMenu(items: [
 
 ```
 
-There are additional optional parameters to initialize the menu with:
+* There are additional optional parameters to initialize the menu with:
 
 ```dart
   final circularMenu = CircularMenu(
@@ -143,7 +143,37 @@ There are additional optional parameters to initialize the menu with:
 
 ```
 
-control animation anywhere in your code using a key:
+* add badge to ```CircularMenuItem``` by setting the property ```enableBadge``` to ```true```
+
+```dart
+CircularMenuItem(
+              enableBadge: true,
+            )
+```
+
+* customize badge by setting the parameters   ```badgeColor``` , ```badgeLabel``` , ```badgeRadius```
+  ```badgeTextColor``` , ```badgeRightOffet``` , ```badgeTopOffet``` , ```badgeBottomOffet``` , ```badgeLeftOffet``` 
+  ```badgeTextStyle``` to satisfy  requirements .
+
+```dart
+CircularMenuItem(
+              enableBadge: true,
+              badgeColor: Colors.amber,
+              badgeLabel: '3',
+              badgeRadius: 15,
+              badgeTextColor: Colors.white,
+              badgeRightOffet: 0,
+              badgeTopOffet: 0,
+              onTap: () {
+                print('badge on circular menu item');
+              },
+              icon: Icons.home,
+              color: Colors.teal,
+            )
+```
+
+
+* control animation anywhere in your code using a key:
 
 
 ```dart
@@ -231,7 +261,7 @@ control animation anywhere in your code using a key:
 
 ```
  
-use MultiCircularMenu to show more than one menu in the same widget :
+* use ```MultiCircularMenu``` to show more than one menu in the same widget :
 
 ```dart
 
