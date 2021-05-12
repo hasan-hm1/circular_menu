@@ -47,8 +47,7 @@ class CircularMenuItem extends StatelessWidget {
     this.badgeLabel,
     this.badgeTextColor,
     this.badgeColor,
-  })  : assert(onTap != null),
-        assert(padding >= 0.0),
+  })  : assert(padding >= 0.0),
         assert(margin >= 0.0);
 
   Widget _buildCircularMenuItem(BuildContext context) {

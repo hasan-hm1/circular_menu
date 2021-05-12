@@ -1,3 +1,6 @@
+## [1.2.2]
+- update README.md, 12.5.2021.
+
 ## [1.2.1]
 - migrate to null safety, 12.5.2021.
 
