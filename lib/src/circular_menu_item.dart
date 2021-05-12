@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class CircularMenuItem extends StatelessWidget {
   /// if icon and animatedIcon are passed, icon will be ignored
   final IconData? icon;
@@ -111,7 +109,6 @@ class CircularMenuItem extends StatelessWidget {
         : _buildCircularMenuItem(context);
   }
 }
-
 
 class _Badge extends StatelessWidget {
   const _Badge({

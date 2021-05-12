@@ -1,5 +1,5 @@
-## [1.2.0]
-- add badge to CircularMenuItem, 21.11.2020.
+## [1.2.1]
+- migrate to null safety, 12.5.2021.
 
 ## [1.1.2]
 - add badge to CircularMenuItem, 21.11.2020.
