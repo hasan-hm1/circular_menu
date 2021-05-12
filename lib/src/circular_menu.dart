@@ -6,7 +6,7 @@ import 'circular_menu_item.dart';
 
 class CircularMenu extends StatefulWidget {
   /// use global key to control animation anywhere in the code
-  final GlobalKey<CircularMenuState> key;
+  final GlobalKey<CircularMenuState>? key;
 
   /// list of CircularMenuItem contains at least two items.
   final List<CircularMenuItem> items;
@@ -18,7 +18,7 @@ class CircularMenu extends StatefulWidget {
   final double radius;
 
   /// widget holds actual page content
-  final Widget backgroundWidget;
+  final Widget? backgroundWidget;
 
   /// animation duration
   final Duration animationDuration;
@@ -30,27 +30,27 @@ class CircularMenu extends StatefulWidget {
   final Curve reverseCurve;
 
   /// callback
-  final VoidCallback toggleButtonOnPressed;
-  final Color toggleButtonColor;
+  final VoidCallback? toggleButtonOnPressed;
+  final Color? toggleButtonColor;
   final double toggleButtonSize;
-  final List<BoxShadow> toggleButtonBoxShadow;
+  final List<BoxShadow>? toggleButtonBoxShadow;
   final double toggleButtonPadding;
   final double toggleButtonMargin;
-  final Color toggleButtonIconColor;
+  final Color? toggleButtonIconColor;
   final AnimatedIconData toggleButtonAnimatedIconData;
 
   /// staring angle in clockwise radian
-  final double startingAngleInRadian;
+  final double? startingAngleInRadian;
 
   /// ending angle in clockwise radian
-  final double endingAngleInRadian;
+  final double? endingAngleInRadian;
 
   /// creates a circular menu with specific [radius] and [alignment] .
   /// [toggleButtonElevation] ,[toggleButtonPadding] and [toggleButtonMargin] must be
   /// equal or greater than zero.
   /// [items] must not be null and it must contains two elements at least.
   CircularMenu({
-    @required this.items,
+    required this.items,
     this.alignment = Alignment.bottomCenter,
     this.radius = 100,
     this.backgroundWidget,
@@ -78,13 +78,13 @@ class CircularMenu extends StatefulWidget {
 
 class CircularMenuState extends State<CircularMenu>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  double _completeAngle;
-  double _initialAngle;
-  double _endAngle;
-  double _startAngle;
-  int _itemsCount;
-  Animation<double> _animation;
+  late AnimationController _animationController;
+  double? _completeAngle;
+  late double _initialAngle;
+  double? _endAngle;
+  double? _startAngle;
+  late int _itemsCount;
+  late Animation<double> _animation;
 
   /// forward animation
   void forwardAnimation() {
@@ -125,21 +125,21 @@ class CircularMenuState extends State<CircularMenu>
         throw ('endingAngleInRadian can not be null');
       }
 
-      if (widget.startingAngleInRadian < 0) {
+      if (widget.startingAngleInRadian! < 0) {
         throw 'startingAngleInRadian has to be in clockwise radian';
       }
-      if (widget.endingAngleInRadian < 0) {
+      if (widget.endingAngleInRadian! < 0) {
         throw 'endingAngleInRadian has to be in clockwise radian';
       }
-      _startAngle = (widget.startingAngleInRadian / math.pi) % 2;
-      _endAngle = (widget.endingAngleInRadian / math.pi) % 2;
-      if (_endAngle < _startAngle) {
+      _startAngle = (widget.startingAngleInRadian! / math.pi) % 2;
+      _endAngle = (widget.endingAngleInRadian! / math.pi) % 2;
+      if (_endAngle! < _startAngle!) {
         throw 'startingAngleInRadian can not be greater than endingAngleInRadian';
       }
       _completeAngle = _startAngle == _endAngle
           ? 2 * math.pi
-          : (_endAngle - _startAngle) * math.pi;
-      _initialAngle = _startAngle * math.pi;
+          : (_endAngle! - _startAngle!) * math.pi;
+      _initialAngle = _startAngle! * math.pi;
     } else {
       switch (widget.alignment.toString()) {
         case 'bottomCenter':
@@ -201,9 +201,9 @@ class CircularMenuState extends State<CircularMenu>
               offset: Offset.fromDirection(
                   _completeAngle == (2 * math.pi)
                       ? (_initialAngle +
-                          (_completeAngle / (_itemsCount)) * index)
+                          (_completeAngle! / (_itemsCount)) * index)
                       : (_initialAngle +
-                          (_completeAngle / (_itemsCount - 1)) * index),
+                          (_completeAngle! / (_itemsCount - 1)) * index),
                   _animation.value * widget.radius),
               child: Transform.scale(
                 scale: _animation.value,
@@ -235,7 +235,7 @@ class CircularMenuState extends State<CircularMenu>
                 ? (_animationController).forward()
                 : (_animationController).reverse();
             if (widget.toggleButtonOnPressed != null) {
-              widget.toggleButtonOnPressed();
+              widget.toggleButtonOnPressed!();
             }
           },
           boxShadow: widget.toggleButtonBoxShadow,
