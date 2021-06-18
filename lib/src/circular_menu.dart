@@ -38,6 +38,7 @@ class CircularMenu extends StatefulWidget {
   final double toggleButtonMargin;
   final Color? toggleButtonIconColor;
   final AnimatedIconData toggleButtonAnimatedIconData;
+  final IconData toggleButtonIconData;
 
   /// staring angle in clockwise radian
   final double? startingAngleInRadian;
@@ -65,6 +66,7 @@ class CircularMenu extends StatefulWidget {
     this.toggleButtonSize = 40,
     this.toggleButtonIconColor,
     this.toggleButtonAnimatedIconData = AnimatedIcons.menu_close,
+    this.toggleButtonIconData,
     this.key,
     this.startingAngleInRadian,
     this.endingAngleInRadian,
@@ -225,7 +227,8 @@ class CircularMenuState extends State<CircularMenu>
       child: Align(
         alignment: widget.alignment,
         child: CircularMenuItem(
-          icon: null,
+          icon: widget.toggleButtonIconData,
+          iconSize: widget.toggleButtonSize,
           margin: widget.toggleButtonMargin,
           color: widget.toggleButtonColor ?? Theme.of(context).primaryColor,
           padding: (-_animation.value * widget.toggleButtonPadding * 0.5) +
@@ -239,13 +242,15 @@ class CircularMenuState extends State<CircularMenu>
             }
           },
           boxShadow: widget.toggleButtonBoxShadow,
-          animatedIcon: AnimatedIcon(
-            icon:
-                widget.toggleButtonAnimatedIconData, //AnimatedIcons.menu_close,
-            size: widget.toggleButtonSize,
-            color: widget.toggleButtonIconColor ?? Colors.white,
-            progress: _animation,
-          ),
+          animatedIcon: widget.toggleButtonIconData == null ?
+            AnimatedIcon(
+              icon:
+              widget.toggleButtonAnimatedIconData, //AnimatedIcons.menu_close,
+              size: widget.toggleButtonSize,
+              color: widget.toggleButtonIconColor ?? Colors.white,
+              progress: _animation,
+            )
+            : null,
         ),
       ),
     );
