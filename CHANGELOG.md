@@ -1,3 +1,6 @@
+## [1.2.3]
+- fix Alignment issue, 14.7.2021.
+
 ## [1.2.2]
 - update README.md, 12.5.2021.
 
