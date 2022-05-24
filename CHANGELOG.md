@@ -1,3 +1,6 @@
+## [2.0.0]
+- update to Flutter 3.0, 24.05.2022.
+  
 ## [1.2.3]
 - fix Alignment issue, 14.7.2021.
 
