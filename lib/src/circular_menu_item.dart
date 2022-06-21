@@ -162,9 +162,9 @@ class _Badge extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: textStyle ??
                         TextStyle(
-                          fontSize: 10,
-                          color: textColor ?? Theme.of(context).accentColor,
-                        ),
+                            fontSize: 10,
+                            color: textColor ??
+                                Theme.of(context).colorScheme.secondary),
                   ),
                 ),
               ),
