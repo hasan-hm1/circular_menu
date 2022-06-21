@@ -1,3 +1,6 @@
+## [2.0.1]
+- eliminate some deprecated properties, 21.06.2022.
+  
 ## [2.0.0]
 - update to Flutter 3.0, 24.05.2022.
   
