@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CircularMenuItem extends StatelessWidget {
   /// if icon and animatedIcon are passed, icon will be ignored
   final IconData? icon;
+  final Image? image;
   final Color? color;
   final Color? iconColor;
   final VoidCallback onTap;
@@ -30,6 +31,7 @@ class CircularMenuItem extends StatelessWidget {
   CircularMenuItem({
     required this.onTap,
     this.icon,
+    this.image,
     this.color,
     this.iconSize = 30,
     this.boxShadow,
@@ -51,7 +53,12 @@ class CircularMenuItem extends StatelessWidget {
         assert(margin >= 0.0);
 
   Widget _buildCircularMenuItem(BuildContext context) {
-    return Container(
+    return image!=null ?
+        GestureDetector(
+          onTap: onTap,
+          child: image,
+        ) :
+        Container(
       margin: EdgeInsets.all(margin),
       decoration: BoxDecoration(
         color: Colors.transparent,
