@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'circular_menu_item.dart';
 
 class CircularMenu extends StatefulWidget {
-  /// use global key to control animation anywhere in the code
-  final GlobalKey<CircularMenuState>? key;
+  final GlobalKey<CircularMenuState>? globalKey;
 
   /// list of CircularMenuItem contains at least two items.
   final List<CircularMenuItem> items;
@@ -65,19 +64,18 @@ class CircularMenu extends StatefulWidget {
     this.toggleButtonSize = 40,
     this.toggleButtonIconColor,
     this.toggleButtonAnimatedIconData = AnimatedIcons.menu_close,
-    this.key,
+    this.globalKey,
     this.startingAngleInRadian,
     this.endingAngleInRadian,
   })  : assert(items.isNotEmpty, 'items can not be empty list'),
         assert(items.length > 1, 'if you have one item no need to use a Menu'),
-        super(key: key);
+        super(key: globalKey);
 
   @override
   CircularMenuState createState() => CircularMenuState();
 }
 
-class CircularMenuState extends State<CircularMenu>
-    with SingleTickerProviderStateMixin {
+class CircularMenuState extends State<CircularMenu> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   double? _completeAngle;
   late double _initialAngle;
@@ -106,18 +104,14 @@ class CircularMenuState extends State<CircularMenu>
         setState(() {});
       });
     _animation = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-          parent: _animationController,
-          curve: widget.curve,
-          reverseCurve: widget.reverseCurve),
+      CurvedAnimation(parent: _animationController, curve: widget.curve, reverseCurve: widget.reverseCurve),
     );
     _itemsCount = widget.items.length;
     super.initState();
   }
 
   void _configure() {
-    if (widget.startingAngleInRadian != null ||
-        widget.endingAngleInRadian != null) {
+    if (widget.startingAngleInRadian != null || widget.endingAngleInRadian != null) {
       if (widget.startingAngleInRadian == null) {
         throw ('startingAngleInRadian can not be null');
       }
@@ -136,9 +130,7 @@ class CircularMenuState extends State<CircularMenu>
       if (_endAngle! < _startAngle!) {
         throw 'startingAngleInRadian can not be greater than endingAngleInRadian';
       }
-      _completeAngle = _startAngle == _endAngle
-          ? 2 * math.pi
-          : (_endAngle! - _startAngle!) * math.pi;
+      _completeAngle = _startAngle == _endAngle ? 2 * math.pi : (_endAngle! - _startAngle!) * math.pi;
       _initialAngle = _startAngle! * math.pi;
     } else {
       switch (widget.alignment.toString()) {
@@ -200,10 +192,8 @@ class CircularMenuState extends State<CircularMenu>
             child: Transform.translate(
               offset: Offset.fromDirection(
                   _completeAngle == (2 * math.pi)
-                      ? (_initialAngle +
-                          (_completeAngle! / (_itemsCount)) * index)
-                      : (_initialAngle +
-                          (_completeAngle! / (_itemsCount - 1)) * index),
+                      ? (_initialAngle + (_completeAngle! / (_itemsCount)) * index)
+                      : (_initialAngle + (_completeAngle! / (_itemsCount - 1)) * index),
                   _animation.value * widget.radius),
               child: Transform.scale(
                 scale: _animation.value,
@@ -228,8 +218,7 @@ class CircularMenuState extends State<CircularMenu>
           icon: null,
           margin: widget.toggleButtonMargin,
           color: widget.toggleButtonColor ?? Theme.of(context).primaryColor,
-          padding: (-_animation.value * widget.toggleButtonPadding * 0.5) +
-              widget.toggleButtonPadding,
+          padding: (-_animation.value * widget.toggleButtonPadding * 0.5) + widget.toggleButtonPadding,
           onTap: () {
             _animationController.status == AnimationStatus.dismissed
                 ? (_animationController).forward()
@@ -240,8 +229,7 @@ class CircularMenuState extends State<CircularMenu>
           },
           boxShadow: widget.toggleButtonBoxShadow,
           animatedIcon: AnimatedIcon(
-            icon:
-                widget.toggleButtonAnimatedIconData, //AnimatedIcons.menu_close,
+            icon: widget.toggleButtonAnimatedIconData, //AnimatedIcons.menu_close,
             size: widget.toggleButtonSize,
             color: widget.toggleButtonIconColor ?? Colors.white,
             progress: _animation,

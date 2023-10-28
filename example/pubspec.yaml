@@ -1,16 +1,19 @@
 name: circular_menu_example
 version: 0.1.0
+publish_to: none
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
 
 dependencies:
+  cupertino_icons: ^1.0.6
   flutter:
     sdk: flutter
+  circular_menu:
+    path: ../
 
-  cupertino_icons: ^0.1.2
-  circular_menu: ^2.0.0
-  
+dev_dependencies:
+  flutter_lints: ^3.0.0
 
 # The following section is specific to Flutter.
 flutter:

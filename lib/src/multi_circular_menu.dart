@@ -8,10 +8,9 @@ class MultiCircularMenu extends StatelessWidget {
 
   /// widget holds actual page content
   final Widget? backgroundWidget;
-  const MultiCircularMenu({required this.menus, this.backgroundWidget})
+  const MultiCircularMenu({super.key, required this.menus, this.backgroundWidget})
       : assert(menus.length != 0, 'menus can not be empty list'),
-        assert(menus.length > 1,
-            'no need to use MultiCircularMenu you can directly use CircularMenu');
+        assert(menus.length > 1, 'no need to use MultiCircularMenu you can directly use CircularMenu');
   @override
   Widget build(BuildContext context) {
     return Stack(
