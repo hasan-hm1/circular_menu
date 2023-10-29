@@ -24,6 +24,9 @@ class CircularMenuItem extends StatelessWidget {
   /// if animatedIcon and icon are passed, icon will be ignored
   final AnimatedIcon? animatedIcon;
 
+  /// overrides all icon display by handling the widget build
+  final Widget Function(BuildContext)? iconBuilder;
+
   /// creates a menu item .
   /// [onTap] must not be null.
   /// [padding] and [margin]  must be equal or greater than zero.
@@ -31,6 +34,7 @@ class CircularMenuItem extends StatelessWidget {
     super.key,
     required this.onTap,
     this.icon,
+    this.iconBuilder,
     this.color,
     this.iconSize = 30,
     this.boxShadow,
@@ -72,7 +76,8 @@ class CircularMenuItem extends StatelessWidget {
             onTap: onTap,
             child: Padding(
               padding: EdgeInsets.all(padding),
-              child: animatedIcon ??
+              child: iconBuilder?.call(context) ??
+                  animatedIcon ??
                   Icon(
                     icon,
                     size: iconSize,

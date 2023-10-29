@@ -38,11 +38,17 @@ class CircularMenu extends StatefulWidget {
   final Color? toggleButtonIconColor;
   final AnimatedIconData toggleButtonAnimatedIconData;
 
+  /// The toggle button builder, overrides all other toggle button properties
+  final Widget Function(BuildContext)? toggleButtonIconBuilder;
+
   /// staring angle in clockwise radian
   final double? startingAngleInRadian;
 
   /// ending angle in clockwise radian
   final double? endingAngleInRadian;
+
+  /// Whether the menu should automatically open initially
+  final bool automaticallyOpenMenu;
 
   /// creates a circular menu with specific [radius] and [alignment] .
   /// [toggleButtonElevation] ,[toggleButtonPadding] and [toggleButtonMargin] must be
@@ -64,9 +70,11 @@ class CircularMenu extends StatefulWidget {
     this.toggleButtonSize = 40,
     this.toggleButtonIconColor,
     this.toggleButtonAnimatedIconData = AnimatedIcons.menu_close,
+    this.toggleButtonIconBuilder,
     this.globalKey,
     this.startingAngleInRadian,
     this.endingAngleInRadian,
+    this.automaticallyOpenMenu = false,
   })  : assert(items.isNotEmpty, 'items can not be empty list'),
         assert(items.length > 1, 'if you have one item no need to use a Menu'),
         super(key: globalKey);
@@ -106,6 +114,9 @@ class CircularMenuState extends State<CircularMenu> with SingleTickerProviderSta
     _animation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: widget.curve, reverseCurve: widget.reverseCurve),
     );
+    if (widget.automaticallyOpenMenu) {
+      _animationController.forward();
+    }
     _itemsCount = widget.items.length;
     super.initState();
   }
@@ -228,6 +239,7 @@ class CircularMenuState extends State<CircularMenu> with SingleTickerProviderSta
             }
           },
           boxShadow: widget.toggleButtonBoxShadow,
+          iconBuilder: widget.toggleButtonIconBuilder,
           animatedIcon: AnimatedIcon(
             icon: widget.toggleButtonAnimatedIconData, //AnimatedIcons.menu_close,
             size: widget.toggleButtonSize,
