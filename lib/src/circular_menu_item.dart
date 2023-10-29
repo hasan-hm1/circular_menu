@@ -24,12 +24,17 @@ class CircularMenuItem extends StatelessWidget {
   /// if animatedIcon and icon are passed, icon will be ignored
   final AnimatedIcon? animatedIcon;
 
+  /// overrides all icon display by handling the widget build
+  final Widget Function(BuildContext)? iconBuilder;
+
   /// creates a menu item .
   /// [onTap] must not be null.
   /// [padding] and [margin]  must be equal or greater than zero.
-  CircularMenuItem({
+  const CircularMenuItem({
+    super.key,
     required this.onTap,
     this.icon,
+    this.iconBuilder,
     this.color,
     this.iconSize = 30,
     this.boxShadow,
@@ -68,17 +73,17 @@ class CircularMenuItem extends StatelessWidget {
         child: Material(
           color: color ?? Theme.of(context).primaryColor,
           child: InkWell(
+            onTap: onTap,
             child: Padding(
               padding: EdgeInsets.all(padding),
-              child: animatedIcon == null
-                  ? Icon(
-                      icon,
-                      size: iconSize,
-                      color: iconColor ?? Colors.white,
-                    )
-                  : animatedIcon,
+              child: iconBuilder?.call(context) ??
+                  animatedIcon ??
+                  Icon(
+                    icon,
+                    size: iconSize,
+                    color: iconColor ?? Colors.white,
+                  ),
             ),
-            onTap: onTap,
           ),
         ),
       ),
@@ -103,15 +108,12 @@ class CircularMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return enableBadge
-        ? _buildCircularMenuItemWithBadge(context)
-        : _buildCircularMenuItem(context);
+    return enableBadge ? _buildCircularMenuItemWithBadge(context) : _buildCircularMenuItem(context);
   }
 }
 
 class _Badge extends StatelessWidget {
   const _Badge({
-    Key? key,
     required this.child,
     required this.label,
     this.color,
@@ -123,7 +125,7 @@ class _Badge extends StatelessWidget {
     this.rightOffset,
     this.topOffset,
     this.textStyle,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final String? label;
@@ -161,10 +163,7 @@ class _Badge extends StatelessWidget {
                     label ?? '',
                     textAlign: TextAlign.center,
                     style: textStyle ??
-                        TextStyle(
-                            fontSize: 10,
-                            color: textColor ??
-                                Theme.of(context).colorScheme.secondary),
+                        TextStyle(fontSize: 10, color: textColor ?? Theme.of(context).colorScheme.secondary),
                   ),
                 ),
               ),

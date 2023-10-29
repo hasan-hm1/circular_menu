@@ -1,3 +1,7 @@
+## [2.0.2]
+- add the ability to customize all icons with a widget builder
+- add the `automaticallyOpenMenu` option
+
 ## [2.0.1]
 - eliminate some deprecated properties, 21.06.2022.
   

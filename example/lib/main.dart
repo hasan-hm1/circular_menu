@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:circular_menu/circular_menu.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> {
   String _colorName = 'No';
   Color _color = Colors.black;
 
@@ -20,21 +22,26 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.pink,
-          title: Text('Flutter Circular Menu'),
+          title: const Text('Flutter Circular Menu'),
         ),
         body: CircularMenu(
           alignment: Alignment.bottomCenter,
           backgroundWidget: Center(
             child: RichText(
               text: TextSpan(
-                style: TextStyle(color: Colors.black, fontSize: 28),
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 28,
+                ),
                 children: <TextSpan>[
                   TextSpan(
                     text: _colorName,
-                    style:
-                        TextStyle(color: _color, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      color: _color,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  TextSpan(text: ' button is clicked.'),
+                  const TextSpan(text: ' button is clicked.'),
                 ],
               ),
             ),
