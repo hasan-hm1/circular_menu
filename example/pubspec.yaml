@@ -10,10 +10,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  circular_menu: 
-      git:
-        url: https://github.com/hasan-hm1/circular_menu.git
-        ref: update-SDK-version
+  circular_menu: ^3.0.0
   
 
 # The following section is specific to Flutter.
