@@ -1,3 +1,6 @@
+## [3.0.0]
+- upgrade to Flutter v3.19, 13.04.2024.
+
 ## [2.0.1]
 - eliminate some deprecated properties, 21.06.2022.
   

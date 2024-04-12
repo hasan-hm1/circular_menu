@@ -1,5 +1,6 @@
 name: circular_menu_example
-version: 0.1.0
+version: 1.0.0
+publish_to: none
 
 environment:
   sdk: '>=3.3.3 <4.0.0'
@@ -9,7 +10,10 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  circular_menu: ^2.0.0
+  circular_menu: 
+      git:
+        url: https://github.com/hasan-hm1/circular_menu.git
+        ref: update-SDK-version
   
 
 # The following section is specific to Flutter.

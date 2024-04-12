@@ -12,10 +12,11 @@ packages:
   circular_menu:
     dependency: "direct main"
     description:
-      name: circular_menu
-      sha256: "253e5e7aaf107e84251b0c51fb66ae17f6caaebf973eb30049f02b999646373a"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: update-SDK-version
+      resolved-ref: a5438bd566e8296a83b5fdd85df6e0976e03ae50
+      url: "https://github.com/hasan-hm1/circular_menu.git"
+    source: git
     version: "2.0.1"
   collection:
     dependency: transitive
