@@ -1,4 +1,4 @@
-## [3.0.1]
+## [4.0.0]
 - fix Alignment issue on newer Flutter versions, 29.05.2024.
   
 ## [3.0.0]
