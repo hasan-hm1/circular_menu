@@ -141,40 +141,40 @@ class CircularMenuState extends State<CircularMenu>
           : (_endAngle! - _startAngle!) * math.pi;
       _initialAngle = _startAngle! * math.pi;
     } else {
-      switch (widget.alignment.toString()) {
-        case 'Alignment.bottomCenter':
+      switch (widget.alignment) {
+        case Alignment.bottomCenter:
           _completeAngle = 1 * math.pi;
           _initialAngle = 1 * math.pi;
           break;
-        case 'Alignment.topCenter':
+        case Alignment.topCenter:
           _completeAngle = 1 * math.pi;
           _initialAngle = 0 * math.pi;
           break;
-        case 'Alignment.centerLeft':
+        case Alignment.centerLeft:
           _completeAngle = 1 * math.pi;
           _initialAngle = 1.5 * math.pi;
           break;
-        case 'Alignment.centerRight':
+        case Alignment.centerRight:
           _completeAngle = 1 * math.pi;
           _initialAngle = 0.5 * math.pi;
           break;
-        case 'Alignment.center':
+        case Alignment.center:
           _completeAngle = 2 * math.pi;
           _initialAngle = 0 * math.pi;
           break;
-        case 'Alignment.bottomRight':
+        case Alignment.bottomRight:
           _completeAngle = 0.5 * math.pi;
           _initialAngle = 1 * math.pi;
           break;
-        case 'Alignment.bottomLeft':
+        case Alignment.bottomLeft:
           _completeAngle = 0.5 * math.pi;
           _initialAngle = 1.5 * math.pi;
           break;
-        case 'Alignment.topLeft':
+        case Alignment.topLeft:
           _completeAngle = 0.5 * math.pi;
           _initialAngle = 0 * math.pi;
           break;
-        case 'Alignment.topRight':
+        case Alignment.topRight:
           _completeAngle = 0.5 * math.pi;
           _initialAngle = 0.5 * math.pi;
           break;
